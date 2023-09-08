@@ -1,4 +1,5 @@
 import streamlit as st
+import openai
 
 openai.api_key = st.secrets['openai_apikey']
 # Custom CSS to limit the width of the output
