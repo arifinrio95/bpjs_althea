@@ -42,7 +42,7 @@ if 'messages' not in st.session_state:
     ]
 
 st.markdown("""
-## Selamat Datang di DokterAI
+## Selamat Datang di Althea AI
 
 ### Deskripsi
 
@@ -101,4 +101,8 @@ if st.session_state.get('prev_input') != user_input:
                 chat_str += f"<p><strong>DokterAI:</strong> {content}</p>"
         chat_str += "</div>"
         chat_history_placeholder.markdown(chat_str, unsafe_allow_html=True)
+
+        # Reset the user input
+        st.session_state.user_input = ''
+
 
