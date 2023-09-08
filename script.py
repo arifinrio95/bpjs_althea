@@ -122,5 +122,5 @@ st.markdown("""
   padding: 5px;
 }
 </style>
-<div class="footer">BPJS Care Center di 165</div>
+<div class="footer">BPJS Care Center : 165</div>
 """, unsafe_allow_html=True)
