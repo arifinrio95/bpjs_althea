@@ -69,7 +69,7 @@ bot = DokterAI(st.session_state.messages)
 
 # Initialize Streamlit session state for text input
 if 'user_input' not in st.session_state:
-    st.session_state.user_input = None
+    st.session_state.user_input = ""
 
 # Placeholder for chat
 chat_history_placeholder = st.empty()
