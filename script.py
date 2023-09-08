@@ -67,6 +67,10 @@ st.sidebar.markdown("""
 # Initialize DokterAI
 bot = DokterAI(st.session_state.messages)
 
+# Initialize Streamlit session state for text input
+if 'user_input' not in st.session_state:
+    st.session_state.user_input = ""
+
 # Placeholder for chat
 chat_history_placeholder = st.empty()
 
@@ -75,31 +79,14 @@ chat_str = "<div class='output'>"
 for message in bot.messages:
     role, content = message["role"], message["content"]
     if role == "user":
-        # Only display the user's input, not the entire prompt
         chat_str += f"<p><strong>User:</strong> {content.split('. ')[0]}</p>"
     elif role == "assistant":
         chat_str += f"<p><strong>DokterAI:</strong> {content}</p>"
 chat_str += "</div>"
 chat_history_placeholder.markdown(chat_str, unsafe_allow_html=True)
 
-# Initialize session state for previous input and chat messages
-if 'prev_input' not in st.session_state:
-    st.session_state.prev_input = ''
-if 'messages' not in st.session_state:
-    st.session_state.messages = [{"role": "system", "content": "Saya adalah DokterAI, dokter virtual Anda. Saya siap membantu Anda dengan pertanyaan medis Anda."}]
-if 'user_input' not in st.session_state:
-    st.session_state.user_input = ''
-
-# Button to reset the conversation
-if st.button("Reset Percakapan"):
-    st.session_state.prev_input = ''
-    st.session_state.user_input = ''
-    st.session_state.messages = [{"role": "system", "content": "Saya adalah DokterAI, dokter virtual Anda. Saya siap membantu Anda dengan pertanyaan medis Anda."}]
-    bot.messages = st.session_state.messages
-    chat_history_placeholder.markdown("", unsafe_allow_html=True)
-
-# Text input and enter as a replacement for the button
-user_input = st.text_input("Tulis pertanyaan medis Anda di sini:", value=st.session_state.user_input)
+# Text input
+user_input = st.text_input("Tulis keluhan / pertanyaan medis Anda di sini:", value=st.session_state.user_input)
 
 # Check if text_input is triggered
 if st.session_state.get('prev_input') != user_input:
@@ -119,5 +106,4 @@ if st.session_state.get('prev_input') != user_input:
         chat_history_placeholder.markdown(chat_str, unsafe_allow_html=True)
 
         # Reset the user input
-        st.text_input("Tulis keluhan / pertanyaan medis Anda di sini:", value='', key='user_input')
-        st.session_state.prev_input = ''
+        st.session_state.user_input = ""
