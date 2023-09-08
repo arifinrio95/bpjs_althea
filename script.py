@@ -41,7 +41,28 @@ if 'messages' not in st.session_state:
         {"role": "system", "content": "Saya adalah DokterAI, dokter virtual Anda. Saya siap membantu Anda dengan pertanyaan medis Anda."}
     ]
 
-st.title("Althea - Dokter AI")
+st.markdown("""
+## Selamat Datang di DokterAI
+
+### Deskripsi
+
+Althea AI adalah asisten medis virtual yang berbasis kecerdasan buatan. Aplikasi ini dirancang untuk membantu Anda dengan pertanyaan atau kekhawatiran medis yang mungkin Anda miliki. Althea akan merespons pertanyaan Anda dan memandu Anda melalui serangkaian pertanyaan follow-up untuk memberikan informasi medis yang lebih spesifik dan akurat.
+""")
+
+st.sidebar.markdown("""
+### Cara Menggunakan
+
+1. **Masukkan Pertanyaan:** Tulis pertanyaan atau simptom medis Anda pada kotak teks yang disediakan.
+2. **Tekan Enter:** Setelah menulis, tekan Enter.
+3. **Baca Respon:** DokterAI akan merespons pertanyaan Anda dan mungkin akan memberikan pertanyaan follow-up untuk lebih memahami kondisi Anda.
+4. **Jangan ragu untuk berinteraksi lebih lanjut:** Anda bisa melanjutkan dialog dengan menanggapi pertanyaan follow-up atau mengajukan pertanyaan baru.
+
+### Catatan
+
+- Aplikasi ini tidak menggantikan konsultasi medis profesional. Jika Anda mengalami gejala yang serius atau membutuhkan diagnosis medis, segera hubungi profesional medis.
+- Semua informasi yang disediakan oleh DokterAI adalah berdasarkan sumber ilmiah yang tersedia hingga saat ini.
+""")
+
 
 # Initialize DokterAI
 bot = DokterAI(st.session_state.messages)
@@ -62,7 +83,7 @@ chat_str += "</div>"
 chat_history_placeholder.markdown(chat_str, unsafe_allow_html=True)
 
 # Text input and enter as a replacement for the button
-user_input = st.text_input("Tulis pertanyaan medis Anda di sini:", key='user_input')
+user_input = st.text_input("Tulis keluhan / pertanyaan medis Anda di sini:", key='user_input')
 
 # Check if text_input is triggered
 if st.session_state.get('prev_input') != user_input:
