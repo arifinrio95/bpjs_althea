@@ -115,6 +115,7 @@ st.markdown("""
   position: fixed;
   left: 0;
   bottom: 0;
+  margin-left: 330px; 
   background-color: #f1f1f1;
   color: black;
   text-align: center;
