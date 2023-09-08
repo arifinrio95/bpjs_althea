@@ -63,7 +63,7 @@ st.sidebar.markdown("""
 - Semua informasi yang disediakan oleh DokterAI adalah berdasarkan sumber ilmiah yang tersedia hingga saat ini.
 """)
 
-
+st.write("Tulis keluhan / pertanyaan medis Anda di sini: ")
 # Initialize DokterAI
 bot = DokterAI(st.session_state.messages)
 
@@ -86,7 +86,6 @@ chat_str += "</div>"
 chat_history_placeholder.markdown(chat_str, unsafe_allow_html=True)
 
 # Text input
-st.write("Tulis keluhan / pertanyaan medis Anda di sini: ")
 user_input = st.text_input("", value=st.session_state.user_input)
 
 # Check if text_input is triggered
