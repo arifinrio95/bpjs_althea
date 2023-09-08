@@ -108,3 +108,18 @@ if st.session_state.get('prev_input') != user_input:
     
             # Reset the user input
             st.session_state.user_input = ""
+
+st.markdown("""
+<style>
+.footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background-color: #f1f1f1;
+  color: black;
+  text-align: center;
+  padding: 5px;
+}
+</style>
+<div class="footer">BPJS Care Center di 165</div>
+""", unsafe_allow_html=True)
