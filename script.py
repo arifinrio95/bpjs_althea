@@ -10,14 +10,22 @@ class DokterAI:
         ]
 
     def get_reply(self, question):
-        self.messages.append({"role": "user", "content": question})
+        self.messages.append({"role": "user", "content": question+""". Jika saya memberikan pernyataan selain symptomps, balas dengan normal.
+                                                         Jika saya memberikan symptomps:berikan satu follow up pertanyaan satu-persatu secara kreatif misal dari kebiasaan, riwayat,
+                                                         dan lainnya sampai kamu bisa mendiagnosa penyakit saya dengan pasti,
+                                                         jangan mendiagnosa jika kesimpulannya belum pasti.
+                                                         Setelah mendiagnosis sertakan sumber jurnal ilmiah atau paper yang mendukung beserta kutipannya yang related."""})
+
         response = openai.ChatCompletion.create(
             model='gpt-4',
             messages=self.messages
         )
+
         answer = response['choices'][0]['message']['content']
         self.messages.append({"role": "assistant", "content": answer})
+
         return answer
+
 
 st.title("DokterAI")
 
