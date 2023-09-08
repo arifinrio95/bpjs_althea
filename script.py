@@ -61,18 +61,23 @@ for message in bot.messages:
 chat_str += "</div>"
 chat_history_placeholder.markdown(chat_str, unsafe_allow_html=True)
 
-# Text input and button
-user_input = st.text_input("Tulis pertanyaan medis Anda di sini:")
-if st.button("Kirim"):
-    response = bot.get_reply(user_input)
+# Text input and enter as a replacement for the button
+user_input = st.text_input("Tulis pertanyaan medis Anda di sini:", key='user_input')
 
-    # Update the chat history
-    chat_str = "<div class='output'>"
-    for message in bot.messages:
-        role, content = message["role"], message["content"]
-        if role == "user":
-            chat_str += f"<p><strong>User:</strong> {content.split('. ')[0]}</p>"
-        elif role == "assistant":
-            chat_str += f"<p><strong>DokterAI:</strong> {content}</p>"
-    chat_str += "</div>"
-    chat_history_placeholder.markdown(chat_str, unsafe_allow_html=True)
+# Check if text_input is triggered
+if st.session_state.get('prev_input') != user_input:
+    st.session_state.prev_input = user_input
+    if user_input:
+        response = bot.get_reply(user_input)
+
+        # Update the chat history
+        chat_str = "<div class='output'>"
+        for message in bot.messages:
+            role, content = message["role"], message["content"]
+            if role == "user":
+                chat_str += f"<p><strong>User:</strong> {content.split('. ')[0]}</p>"
+            elif role == "assistant":
+                chat_str += f"<p><strong>DokterAI:</strong> {content}</p>"
+        chat_str += "</div>"
+        chat_history_placeholder.markdown(chat_str, unsafe_allow_html=True)
+
