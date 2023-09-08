@@ -1,6 +1,6 @@
 import streamlit as st
 
-openai.api_key = st.secrets('openai_apikey')
+openai.api_key = st.secrets['openai_apikey']
 # Custom CSS to limit the width of the output
 st.markdown("""
 <style>
