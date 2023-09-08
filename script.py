@@ -86,7 +86,8 @@ chat_str += "</div>"
 chat_history_placeholder.markdown(chat_str, unsafe_allow_html=True)
 
 # Text input
-user_input = st.text_input("Tulis keluhan / pertanyaan medis Anda di sini:", value=st.session_state.user_input)
+st.write("Tulis keluhan / pertanyaan medis Anda di sini: ")
+user_input = st.text_input(value=st.session_state.user_input)
 
 # Check if text_input is triggered
 if st.session_state.get('prev_input') != user_input:
