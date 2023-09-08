@@ -1,5 +1,6 @@
 import streamlit as st
 
+openai.api_key = st.secret('openai_apikey')
 # Custom CSS to limit the width of the output
 st.markdown("""
 <style>
@@ -38,6 +39,8 @@ if 'messages' not in st.session_state:
     st.session_state.messages = [
         {"role": "system", "content": "Saya adalah DokterAI, dokter virtual Anda. Saya siap membantu Anda dengan pertanyaan medis Anda."}
     ]
+
+st.title("Althea - Dokter AI")
 
 # Initialize DokterAI
 bot = DokterAI(st.session_state.messages)
