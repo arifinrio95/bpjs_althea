@@ -27,7 +27,7 @@ class DokterAI:
         self.messages.append({"role": "system", "content": prompt})
 
         response = openai.ChatCompletion.create(
-            model='gpt-4',
+            model='gpt-4o-mini',
             messages=self.messages
         )
         answer = response['choices'][0]['message']['content']
